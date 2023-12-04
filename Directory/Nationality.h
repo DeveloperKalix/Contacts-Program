@@ -17,3 +17,5 @@ struct Dictionary {
 void dictionaryInsertion(struct Dictionary* dict, const char* key, char* value);
 char* retrieveNationality(struct Dictionary* dict, const char *key); 
 void deleteDictionary(struct Dictionary* dict)
+
+#endif
