@@ -8,14 +8,15 @@
 struct KVP {
     char key[MAX_KEY_LENGTH];
     char value[MAX_VALUE_LENGTH];
-}
+};
 
 struct Dictionary {
+    char title[20];
     struct KVP entries[MAX_ENTRIES];
-}
+};
 
 void dictionaryInsertion(struct Dictionary* dict, const char* key, char* value);
 char* retrieveNationality(struct Dictionary* dict, const char *key); 
-void deleteDictionary(struct Dictionary* dict)
+void deleteDictionary(struct Dictionary* dict);
 
 #endif
