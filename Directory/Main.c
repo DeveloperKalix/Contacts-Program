@@ -12,13 +12,26 @@ struct Contact {
     int Age;
     char occupation[50];
     char organizations[MAX_ORGS][ORG_LENGTH];
-    char nationality[50]
+    char nationality[1]
 };
 
 int main() {
     
-    struct Dictionary* Nationalities = (struct Dictionary *)calloc(1, sizeof(struct Dictionary));
+    char dictTitle[100] = "Nationalities List";
+    struct Dictionary* Nationalities = createDictionary(dictTitle);
+    dictionaryInsertion(Nationalities, "Angolan", "🇦🇴");
+    dictionaryInsertion(Nationalities, "Armenian", "🇦🇲");
+    dictionaryInsertion(Nationalities, "Azerbaijani", "🇦🇿");
+    dictionaryInsertion(Nationalities, "Danish", "🇩🇰");
+    dictionaryInsertion(Nationalities, "Canadian", "🇨🇦");
+    dictionaryInsertion(Nationalities, "Cambodian", "🇰🇭");
+    dictionaryInsertion(Nationalities, "French", "🇫🇷");
     dictionaryInsertion(Nationalities, "Russian", "🇷🇺");
-    free(Nationalities);
+    dictionaryInsertion(Nationalities, "Ukraine", "🇺🇦");
+    dictionaryInsertion(Nationalities, "Belgian", "🇧🇪");
+    dictionaryInsertion(Nationalities, "Turkish", "🇹🇷");
+    dictionaryInsertion(Nationalities, "Israel", "🇮🇱");
+    printDictionary(Nationalities);
+    deleteDictionary(Nationalities);
     return 0;
 }
