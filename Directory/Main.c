@@ -12,7 +12,7 @@ struct Contact {
     int Age;
     char occupation[50];
     char organizations[MAX_ORGS][ORG_LENGTH];
-    char nationality[1]
+    char nationality[1];
 };
 
 int main() {
@@ -33,5 +33,6 @@ int main() {
     dictionaryInsertion(Nationalities, "Israel", "🇮🇱");
     printDictionary(Nationalities);
     deleteDictionary(Nationalities);
+    //struct KVP* tester = calloc(100, sizeof(struct KVP));
     return 0;
 }
