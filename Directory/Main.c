@@ -27,10 +27,10 @@ int main() {
     dictionaryInsertion(Nationalities, "Cambodian", "🇰🇭");
     dictionaryInsertion(Nationalities, "French", "🇫🇷");
     dictionaryInsertion(Nationalities, "Russian", "🇷🇺");
-    dictionaryInsertion(Nationalities, "Ukraine", "🇺🇦");
+    dictionaryInsertion(Nationalities, "Ukrainian", "🇺🇦");
     dictionaryInsertion(Nationalities, "Belgian", "🇧🇪");
     dictionaryInsertion(Nationalities, "Turkish", "🇹🇷");
-    dictionaryInsertion(Nationalities, "Israel", "🇮🇱");
+    dictionaryInsertion(Nationalities, "Israeli", "🇮🇱");
     printDictionary(Nationalities);
     deleteDictionary(Nationalities);
     //struct KVP* tester = calloc(100, sizeof(struct KVP));
