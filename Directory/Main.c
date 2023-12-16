@@ -2,18 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Nationality.h"
+#include "Contact.h"
 
-#define MAX_ORGS 3
-#define ORG_LENGTH 50
 
-struct Contact {
-    char firstName[25];
-    char lastName[25];
-    int Age;
-    char occupation[50];
-    char organizations[MAX_ORGS][ORG_LENGTH];
-    char nationality[1];
-};
 
 int main() {
     
@@ -33,6 +24,6 @@ int main() {
     dictionaryInsertion(Nationalities, "Israeli", "🇮🇱");
     printDictionary(Nationalities);
     deleteDictionary(Nationalities);
-    //struct KVP* tester = calloc(100, sizeof(struct KVP));
+    
     return 0;
 }

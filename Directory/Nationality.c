@@ -64,7 +64,7 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
     strcpy(Nationality->value, value);
     if(dict->head == NULL) {
         dict->head = Nationality;
-        printf("INSERTED AT HEAD\n");
+        // printf("INSERTED AT HEAD\n");
     }
     else if(dict->head != NULL && dict->tail == NULL)
     {
@@ -77,7 +77,7 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
             dict->head = Nationality;
         }
         dict->head->next = dict->tail;
-        printf("INSERTED AT TAIL\n");
+        // printf("INSERTED AT TAIL\n");
     }
     else
     {
@@ -87,7 +87,7 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
             if(checkLast > 0) {
                 dict->tail->next = Nationality;
                 dict->tail = Nationality;
-                printf("INSERTED AT END\n");
+                // printf("INSERTED AT END\n");
             }
             else
             {
