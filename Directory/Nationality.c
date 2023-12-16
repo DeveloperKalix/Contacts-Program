@@ -64,8 +64,9 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
     strcpy(Nationality->value, value);
     if(dict->head == NULL) {
         dict->head = Nationality;
+        printf("INSERTED AT HEAD\n");
     }
-    else if(dict->head && dict->tail == NULL)
+    else if(dict->head != NULL && dict->tail == NULL)
     {
         int comparison = strcmp(dict->head->key, Nationality->key);
         if(comparison < 0) {
@@ -76,36 +77,30 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
             dict->head = Nationality;
         }
         dict->head->next = dict->tail;
+        printf("INSERTED AT TAIL\n");
     }
     else
     {
         if(dictionarySize(dict) < MAX_ENTRIES) {
             
-            int checkLast = strcmp(Nationality->key, dict->head->key);
+            int checkLast = strcmp(Nationality->key, dict->tail->key);
             if(checkLast > 0) {
                 dict->tail->next = Nationality;
                 dict->tail = Nationality;
+                printf("INSERTED AT END\n");
             }
             else
             {
-                struct KVP* DelayedPointer = (struct KVP *)calloc(1, sizeof(struct KVP));
-                struct KVP* Temp = DelayedPointer;
-                DelayedPointer->next = dict->head;
-                struct KVP* Pointer = dict->head->next;
-                while(Pointer) {
-                    int comparison = strcmp(Nationality->key, DelayedPointer->key);
-                    if(comparison > 0) {
-                        Pointer = Pointer->next;
-                        DelayedPointer = DelayedPointer->next;
-                    }
-                    else
-                    {
-                        Nationality->next = Pointer;
-                        DelayedPointer->next = Nationality;
-                        break;
-                    }
+                struct KVP* ptr = dict->head;
+
+                while(ptr->next != NULL && strcmp(ptr->next->key, Nationality->key) < 0)
+                {
+                    ptr = ptr->next;
                 }
-                free(Temp);
+
+                Nationality->next = ptr->next;
+                ptr->next = Nationality;
+
             }
 
             
@@ -115,4 +110,5 @@ void dictionaryInsertion(struct Dictionary* dict, const char *key, char *value)
     
 
     dict->insertions++;
+
 };
