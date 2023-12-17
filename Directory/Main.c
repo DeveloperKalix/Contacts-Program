@@ -14,7 +14,8 @@ int main() {
     initializeNationalities(Nationalities);
     printDictionary(Nationalities);
     deleteDictionary(Nationalities);
-    unsigned int num = hashFunction('A');
+    char character = 'D';
+    unsigned int num = hashFunction(&character);
     printf("%d\n", num);
     
     return 0;

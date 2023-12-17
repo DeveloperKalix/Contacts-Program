@@ -1,4 +1,7 @@
-#ifndef NATIONALITY_H
+#ifndef CONTACT_H
+#define CONTACT_H
+
+#include "Nationality.h"
 
 #define MAX_ORGS 3
 #define ORG_LENGTH 50
