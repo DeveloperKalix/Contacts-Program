@@ -1,15 +1,26 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Nationality.h"
 #include "Contact.h"
 
-
+void initializeNationalities(struct Dictionary* Nationalities);
 
 int main() {
     
     char dictTitle[100] = "Nationalities List";
     struct Dictionary* Nationalities = createDictionary(dictTitle);
+    initializeNationalities(Nationalities);
+    printDictionary(Nationalities);
+    deleteDictionary(Nationalities);
+    unsigned int num = hashFunction('A');
+    printf("%d\n", num);
+    
+    return 0;
+}
+
+void initializeNationalities(struct Dictionary* Nationalities) {
     dictionaryInsertion(Nationalities, "Angolan", "🇦🇴");
     dictionaryInsertion(Nationalities, "Armenian", "🇦🇲");
     dictionaryInsertion(Nationalities, "Azerbaijani", "🇦🇿");
@@ -22,8 +33,4 @@ int main() {
     dictionaryInsertion(Nationalities, "Belgian", "🇧🇪");
     dictionaryInsertion(Nationalities, "Turkish", "🇹🇷");
     dictionaryInsertion(Nationalities, "Israeli", "🇮🇱");
-    printDictionary(Nationalities);
-    deleteDictionary(Nationalities);
-    
-    return 0;
 }
