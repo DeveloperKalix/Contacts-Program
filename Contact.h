@@ -2,7 +2,7 @@
 
 #define MAX_ORGS 3
 #define ORG_LENGTH 50
-#define ADDRESS_BOOK_SIZE 65
+#define ADDRESS_LENGTH_SIZE 65
 
 
 
@@ -18,16 +18,14 @@ typedef struct Contact {
 
 typedef struct Contact_Node {
     Contact contact;
-    struct Node* next;
+    struct Contact_Node* next;
 } Contact_Node;
 
-struct AddressBook {
+typedef struct AddressBook {
     char title[25];
-    
-};
+    Contact_Node* HashTable[ADDRESS_LENGTH_SIZE];
+} AddressBook; 
 
-typedef struct {
-    HashTable AddressBook;
-}
+unsigned int hashFunction()
 
 #endif
