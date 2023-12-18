@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,9 +14,19 @@ int main() {
     printDictionary(Nationalities);
     deleteDictionary(Nationalities);
     char character = 'D';
-    unsigned int num = hashFunction(&character);
-    printf("%d\n", num);
-    
+    //unsigned int num = hashFunction(&character);
+    //printf("%d\n", num);
+    char* pn = "2010653987";
+    char* formattedPN = malloc(sizeof(char) * 15);
+    formattedPN = formatPhoneNumber(formattedPN, pn, 0);
+    if(formattedPN == NULL) {
+        printf("This is not a valid phone number.\n");
+    }
+    else
+    {
+        printf("DIAL: %s\n", formattedPN);
+    }
+    free(formattedPN);
     return 0;
 }
 

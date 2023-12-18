@@ -6,6 +6,7 @@
 #define MAX_ORGS 3
 #define ORG_LENGTH 50
 #define ADDRESS_BOOK_LENGTH 27
+#define CONTACT_LIST_LENGTH 64
 
 
 
@@ -15,7 +16,6 @@ typedef struct Contact {
     char phoneNumber[11];
     int Age;
     char occupation[50];
-    char organizations[ORG_LENGTH][MAX_ORGS];
     char nationality;
 } Contact;
 
@@ -36,10 +36,11 @@ typedef struct AddressBook {
 } AddressBook; 
 
 AddressBook* createAddressBook(char* Title);
-Contact_Node* createContact(char* firstName, char* lastName, char* phoneNumber, int* Age, char* occupation, char organizations[][MAX_ORGS], char* nationality, struct Dictionary* Dict);
-void insertContact(AddressBook* AB, Contact* individual);
-void removeContact(AddressBook* AB, Contact* individual);
+Contact_Node* createContact(char* firstName, char* lastName, char* phoneNumber, int* Age, char* occupation, char* nationality, struct Dictionary* Dict);
+void insertContact(AddressBook* AB, Contact_Node* individual);
+void removeContact(AddressBook* AB, Contact_Node* individual);
 unsigned int hashFunction(char* lastName);
 void removeAddressBook(AddressBook* AB);
+char* formatPhoneNumber(char* formattedString, char* phoneNumber, int iterator);
 
 #endif
