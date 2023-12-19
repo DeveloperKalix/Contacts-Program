@@ -51,7 +51,7 @@ char* Retrieve(const struct Dictionary* dict, const char* key) {
 void printDictionary(struct Dictionary* dict) {
     struct KVP* printer = dict->head;
     while(printer) {
-        printf("Nationality: %s\n", printer->key);
+        printf("Nationality: %s\n", printer->value);
         printer = printer->next;
     }
 }

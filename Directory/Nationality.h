@@ -1,7 +1,7 @@
 #ifndef NATIONALITY_H
 #define NATIONALITY_H
 
-#define MAX_ENTRIES 50
+#define MAX_ENTRIES 200
 #define MAX_KEY_LENGTH 50
 #define MAX_VALUE_LENGTH 50
 
