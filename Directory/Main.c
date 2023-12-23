@@ -4,32 +4,81 @@
 #include "Nationality.h"
 #include "Contact.h"
 
+#define MAX_LENGTH 50
+
 void initializeNationalities(struct Dictionary* Nationalities);
 
 int main() {
     
+    FILE *file = fopen("contacts.txt", "r");
+    if(file == NULL) {
+        perror("No Contacts found.");
+        return EXIT_FAILURE;
+    }
+
     char dictTitle[100] = "Nationalities List";
     struct Dictionary* Nationalities = createDictionary(dictTitle);
+    AddressBook* Contacts = createAddressBook("My Contacts");
     initializeNationalities(Nationalities);
+    char firstName[MAX_LENGTH +1], lastName[MAX_LENGTH +1], theAge[3], phonenumber[10+1], occupation[50+1], nationality[MAX_LENGTH +1] = ""; 
+    int intage = 0;
+    char singleContact[175];
+    while(fgets(singleContact, sizeof(singleContact), file) != NULL) {
+        char* token;
+        int count = 0;
+        occupation[0] = '\0';
+        token = strtok(singleContact, " ");
+        //strcpy(firstName, token);
+        char temp[25] = "";
+        while(token != NULL) {
+            switch(count) {
+                case(0):
+                  strcpy(firstName, token);
+                  token = strtok(NULL, " ");
+                  break;
+                case(1):
+                  strcpy(lastName, token);
+                  token = strtok(NULL, " ");
+                  break;
+                case(2):
+                  strcpy(theAge, token);
+                  intage = atoi(theAge);
+                  token = strtok(NULL, " ");
+                  break;
+                case(3):
+                  strcpy(nationality, token);
+                  token = strtok(NULL, " ");
+                  break;
+                case(4):
+                 strcpy(phonenumber, token);
+                 token = strtok(NULL, " ");
+                  break;
+                default:
+                  strcpy(temp, token);
+                  strcat(occupation, temp);
+                  strcat(occupation, " ");
+                  token = strtok(NULL, " ");
+                  break;
+            }
+            strcpy(temp, "");
+            count++;
+            
+        }
+        //printf("%s! %s! %d! %s! %s! %s!\n", firstName, lastName, intage, phonenumber, nationality, occupation);
+        Contact_Node* new_Contact = createContact(firstName, lastName, phonenumber, &intage, occupation, Retrieve(Nationalities, nationality), Nationalities);
+        insertContact(Contacts, new_Contact);
+        
+    }
+    
     //printDictionary(Nationalities);
     char character = 'D';
-    //unsigned int num = hashFunction(&character);
-    //printf("%d\n", num);
     char* pn = "2010653987";
     char* formattedPN = malloc(sizeof(char) * 15);
     formattedPN = formatPhoneNumber(pn, 0);
-    //printf("DIAL: %s\n", formattedPN);
     if(formattedPN == NULL) {
         printf("This is not a valid phone number.\n");
     }
-    else
-    {
-        printf("DIAL: %s\n", formattedPN);
-    }
     free(formattedPN);
-    // char* test = Retrieve(Nationalities, "Jamaican");
-    // printf("YES! %s\n", test);
-    AddressBook* Contacts = createAddressBook("My Contacts");
     int age = 30;
     Contact_Node* contact1 = createContact("John", "Jimson", "2010653987", &age, "Engineer", Retrieve(Nationalities, "Angolan"), Nationalities);
     age = 25;
@@ -45,14 +94,7 @@ int main() {
     age = 41;
     Contact_Node* contact7 = createContact("Daniel", "Jackson", "7654321098", &age, "Teacher", Retrieve(Nationalities,"German"), Nationalities);
     age = 22;
-    // Contact_Node* contact8 = {"Olivia", "Wilson", "5432109876", 29, "Doctor", *Retrieve(Nationalities,"American Samoan")};
-    // Contact_Node* contact9 = {"Matthew", "Moore", "8901234567", 38, "Artist", *Retrieve(Nationalities,"American Samoan")};
-    // Contact_Node* contact10 = {"Ella", "Garcia", "6789012345", 23, "Programmer", *Retrieve(Nationalities,"Jamaican")};
-    // Contact_Node* contact11 = {"Liam", "Martinez", "0123456789", 31, "Engineer", *Retrieve(Nationalities,"Turkish")};
-    // Contact_Node* contact12 = {"Ava", "Lopez", "4567890123", 26, "Doctor", *Retrieve(Nationalities,"French")};
-    // Contact_Node* contact13 = {"Mark", "Hernandez", "9876543210", 34, "Teacher", *Retrieve(Nationalities,"Portuguese")};
-    // Contact_Node* contact14 = {"Isabella", "Gonzalez", "3210987654", 30, "Artist", *Retrieve(Nationalities,"Danish")};
-    // Contact_Node* contact15 = {"Oliver", "Rivera", "6543210987", 24, "Programmer", *Retrieve(Nationalities,"Russian")};
+    
     insertContact(Contacts,contact1);
     insertContact(Contacts,contact2);
     insertContact(Contacts,contact3);
@@ -65,7 +107,7 @@ int main() {
     removeAddressBook(Contacts);
     deleteDictionary(Nationalities);
     //insertContact(AddressBook* AB, Contact_Node* individual)
-    
+    fclose(file);
     return 0;
 }
 
@@ -113,7 +155,7 @@ void initializeNationalities(struct Dictionary* Nationalities) {
     dictionaryInsertion(Nationalities, "South Africa", "🇿🇦");
     dictionaryInsertion(Nationalities, "Iraqi", "🇮🇶");
     dictionaryInsertion(Nationalities, "Persian", "🇮🇷");
-    dictionaryInsertion(Nationalities, "Zambia", "🇿🇲");
+    dictionaryInsertion(Nationalities, "Zambian", "🇿🇲");
     dictionaryInsertion(Nationalities, "Zimbabwean", "🇿🇼");
     dictionaryInsertion(Nationalities, "Mozambican", "🇿🇦");
     dictionaryInsertion(Nationalities, "Turkish", "🇹🇷");

@@ -25,7 +25,6 @@ AddressBook* createAddressBook(char* Title){
 }
 
 char* formatPhoneNumber(char* phoneNumber, int iterator) {
-    printf("PASSED VALUE: %s\n", phoneNumber);
     char* formattedPN = malloc(sizeof(char) * 15);
     if(strlen(phoneNumber) == 10) {
         for(int i = 0; i < PHONE_NUMBER_LENGTH-1; i++)
@@ -64,7 +63,7 @@ Contact_Node* createContact(char* firstName, char* lastName, char* phoneNumber, 
     char* phoneNumberString;
     if(formatPhoneNumber(phoneNumber, 0)) {
         phoneNumberString = formatPhoneNumber( phoneNumber, 0);
-        printf("PHONE NUMBA!: %s\n", phoneNumberString);
+        //printf("PHONE NUMBA!: %s\n", phoneNumberString);
         strcpy(Individual->phoneNumber, phoneNumberString);
         free(phoneNumberString);
     }
@@ -194,7 +193,7 @@ void printAddressBook(AddressBook* AB) {
         Contact_Node* contact = AB->HashTable[index]->head;
         printf("[%c]\n", AB->HashTable[index]->letter);
         while(contact) {
-            printf("[   %s, %s  [%d]  %s  %s   ]\n\n", contact->contact.lastName, contact->contact.firstName, contact->contact.Age, contact->contact.occupation, contact->contact.phoneNumber);
+            printf("[   %s, %s  [%d]  %s  %s  %s   ]\n\n", contact->contact.lastName, contact->contact.firstName, contact->contact.Age, contact->contact.occupation, contact->contact.phoneNumber, contact->contact.nationality);
             contact = contact->next;
         }
     }
